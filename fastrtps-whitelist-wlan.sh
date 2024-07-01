@@ -1,11 +1,17 @@
 #!/bin/bash
-set -euo pipefail
+set -eo pipefail
 IFS=$'\n\t'
 
 # Fast-DDS https://fast-dds.docs.eprosima.com/en/latest/fastdds/transport/whitelist.html
 # needs actual ip for this interface
-interface=wlan0
-ipinet="$(ip a s $interface | egrep -o 'inet [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')"
+ipinet_list=""
+for interface in "$@"
+do
+    ipinet="$(ip a s $interface | egrep -o 'inet [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')"
+    newline=$'\n'
+    ipinet_list+="                <address>${ipinet##inet }</address>${newline}"
+done
+
 echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
 <profiles xmlns=\"http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles\">
     <transport_descriptors>
@@ -13,7 +19,7 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
             <transport_id>CustomUDPTransport</transport_id>
             <type>UDPv4</type>
             <interfaceWhiteList>
-                <address>${ipinet##inet }</address>
+${ipinet_list}
             </interfaceWhiteList>
         </transport_descriptor>
 
@@ -21,7 +27,7 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
             <transport_id>CustomTCPTransport</transport_id>
             <type>TCPv4</type>
             <interfaceWhiteList>
-                <address>${ipinet##inet }</address>
+${ipinet_list}
             </interfaceWhiteList>
         </transport_descriptor>
 
@@ -37,4 +43,4 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
         </rtps>
     </participant>
 
-</profiles>" > fastrtps-whitelist-wlan.xml
+</profiles>" >> fastrtps-whitelist-wlan.xml
