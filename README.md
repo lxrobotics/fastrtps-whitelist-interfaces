@@ -8,7 +8,7 @@ This repository contains a script to whitelist specific interfaces to be used by
 ### How-to-use
 ```bash
 ros2 daemon stop
-./fastrtps-whitelist-wlan.sh
-export FASTRTPS_DEFAULT_PROFILES_FILE=$(pwd)/fastrtps-whitelist-wlan.xml
+./fastrtps-whitelist-interfaces.sh wlan0 eth0 ...
+export FASTRTPS_DEFAULT_PROFILES_FILE=$(pwd)/fastrtps-whitelist-interfaces.xml
 export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 ```

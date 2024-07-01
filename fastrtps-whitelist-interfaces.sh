@@ -43,4 +43,4 @@ ${ipinet_list}
         </rtps>
     </participant>
 
-</profiles>" >> fastrtps-whitelist-wlan.xml
+</profiles>" >> fastrtps-whitelist-interfaces.xml
