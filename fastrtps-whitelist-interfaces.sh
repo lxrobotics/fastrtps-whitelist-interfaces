@@ -2,6 +2,12 @@
 set -eo pipefail
 IFS=$'\n\t'
 
+if [ "$#" -lt 1 ]
+then
+  echo "Usage: ./fastrtps-whitelist-interfaces.sh wlan0 [eth0, ...]"
+  exit 1
+fi
+
 # Fast-DDS https://fast-dds.docs.eprosima.com/en/latest/fastdds/transport/whitelist.html
 # needs actual ip for this interface
 ipinet_list=""
