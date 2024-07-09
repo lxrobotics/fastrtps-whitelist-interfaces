@@ -1,3 +1,7 @@
+# Alexander Entinger, LXRobotics GmbH (https://lxrobotics.com/)
+# Based on Olivier Kermorgant's reply on answers.ros.org ( https://answers.ros.org/question/405753/limit-ros-traffic-to-specific-network-interface/ )
+# Blog article with background information https://www.lxrobotics.com/restrict-ros2-dds-communication-to-specific-interfaces/
+
 #!/bin/bash
 set -eo pipefail
 IFS=$'\n\t'
