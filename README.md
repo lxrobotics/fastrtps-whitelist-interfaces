@@ -5,7 +5,7 @@
 
 This repository contains a script to whitelist specific interfaces to be used by [eProsima](https://www.eprosima.com/)'s [FastRTPS](https://fast-dds.docs.eprosima.com/en/v1.7.0/) [DDS](https://en.wikipedia.org/wiki/Data_Distribution_Service).
 
-A blog article providing relevant background information can be found [here](https://www.lxrobotics.com/restrict-ros2-dds-communication-to-specific-interfaces/).
+A blog article providing relevant background information can be found [here](https://lxrobotics.com/blog/restrict-ros2-dds-communication-to-specific-interfaces/).
 
 ### How-to-use
 ```bash
